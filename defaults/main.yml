@@ -1,0 +1,52 @@
+---
+# defaults file for docker-configure
+
+# Default username
+defaultuser:
+  name: ubuntu
+
+# Docker user
+dockeruser:
+  name: docker
+  uid: 1050
+  maingroup: docker
+  maingid: 1050
+  groups:
+    - sudo
+
+# Docker user environment variables
+docker_user_env_vars:
+  - {name: "PUID", value: "{{ dockeruser.uid }}"}
+  - {name: "PGID", value: "{{ dockeruser.maingid }}"}
+
+add_default_user_to_docker_group: false
+
+bash_aliases:
+  - {alias: "dcrun", command: "sudo docker-compose -f /opt/docker-compose.yml up -d "}
+  - {alias: "dcstop", command: "sudo docker-compose -f /opt/docker-compose.yml stop "}
+  - {alias: "dcpull", command: "sudo docker-compose -f /opt/docker-compose.yml pull "}
+  - {alias: "dclogs", command: 'sudo docker-compose -f /opt/docker-compose.yml logs -tf --tail="50" '}
+  - {alias: "dcprune", command: "sudo docker image prune -a"}
+
+set_gitconfig: false
+
+git:
+  name: John Doe 
+  email: example@example.com
+
+git_safe_directories:
+    - /opt/appdata/test/config
+
+# Example of a apt_packages definition (optional):
+# apt_packages:
+#   - speedtest-cli
+
+# Example of extra environment variables (optional)
+# env_vars:
+#   - {name: "TIMEZONE", value: "{{tz}}"}
+# tz: Europe/Lisbon
+
+# Example of Docker Folders Configuration (optional):
+# dockerconfig:
+#   folders:
+#     - /opt/appdata/test/config

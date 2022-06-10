@@ -1,0 +1,8 @@
+[safe]
+	{% for dir in git_safe_directories -%}
+	directory = {{ dir }}
+	{% endfor %}
+
+[user]
+	email = {{ git.email }}
+	name = {{ git.name }}

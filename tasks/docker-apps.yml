@@ -1,0 +1,29 @@
+---
+- name: Set environment variables for docker compose.
+  blockinfile:
+    path: "/etc/environment"
+    block: "{{ lookup('template', 'etc/environment.j2') }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR {{item.name}}"
+    owner: root
+    group: root
+    mode: 0775
+  loop: "{% if env_vars is defined %}{{ docker_user_env_vars + env_vars }}{% else %}{{ docker_user_env_vars }}{% endif %}"
+  tags:
+    - env-vars
+
+- name: Create docker apps directories if they don't exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{dockeruser.name}}"
+    group: "{{dockeruser.maingroup}}"
+    mode: 0775
+  with_items: "{{dockerconfig.folders}}"
+  when: dockerconfig is defined
+
+# - name: Copy docker-compose.yml into position
+#   copy:
+#     src: "opt/docker-compose.yml"
+#     dest: "/opt/docker-compose.yml"
+#   tags:
+#     - docker-compose

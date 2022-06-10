@@ -1,0 +1,14 @@
+---
+# TODO: Is it necessary? Maybe, to install docker-compose for arm64... 
+- name: Debug Architecture 
+  ansible.builtin.debug:
+    var: ansible_architecture
+  tags:
+    - debug
+
+- name: Install a list of packages
+  apt:
+    name: "{{ apt_packages }}"
+  tags:
+  - aptpckages
+  when: apt_packages is defined

@@ -1,0 +1,32 @@
+---
+- name: Create group for docker user.
+  group:
+    name: "{{dockeruser.maingroup}}"
+    gid: "{{dockeruser.maingid}}"
+    state: present
+    system: no
+
+- name: Create docker user.
+  user:
+    uid: "{{dockeruser.uid}}"
+    name: "{{dockeruser.name}}"
+    shell: /sbin/nologin
+    group: "{{dockeruser.maingroup}}"
+    groups: "{{dockeruser.groups}}"
+    state: present
+    system: no
+    append: yes
+
+- name: Adding default user to group docker.
+  user:
+    name: '{{defaultuser.name}}'
+    groups: "{{dockeruser.maingroup}}"
+    append: yes
+  when: add_default_user_to_docker_group is defined and add_default_user_to_docker_group|bool is true
+
+- name: Configure .gitconfig file for default user.
+  template:
+    src: home/gitconfig.j2
+    dest: "/home/{{defaultuser.name}}/.gitconfig"
+  tags:
+    - gitconfig

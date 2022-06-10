@@ -1,0 +1,20 @@
+galaxy_info:
+  role_name: docker-configure
+  author: rarrais
+  description: Configure Docker for usage with Docker-Compose
+  company: rarrais.com
+
+  license: Unlicensed
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - focal
+    - jammy
+
+  galaxy_tags: []
+
+dependencies: 
+  - geerlingguy.docker
