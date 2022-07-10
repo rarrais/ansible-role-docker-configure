@@ -22,7 +22,7 @@ docker_user_env_vars:
 add_default_user_to_docker_group: false
 
 bash_aliases:
-  - {alias: "dcrun", command: "sudo docker-compose -f /opt/docker-compose.yml up -d "}
+  - {alias: "dcup", command: "sudo docker-compose -f /opt/docker-compose.yml up -d "}
   - {alias: "dcstop", command: "sudo docker-compose -f /opt/docker-compose.yml stop "}
   - {alias: "dcpull", command: "sudo docker-compose -f /opt/docker-compose.yml pull "}
   - {alias: "dclogs", command: 'sudo docker-compose -f /opt/docker-compose.yml logs -tf --tail="50" '}
