@@ -30,3 +30,4 @@
     dest: "/home/{{defaultuser.name}}/.gitconfig"
   tags:
     - gitconfig
+  when: set_gitconfig is true

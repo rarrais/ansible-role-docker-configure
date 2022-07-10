@@ -5,6 +5,11 @@
   include: base-os.yml
   tags: baseos
 
+- name: Install docker compose on arm64
+  include: docker-compose.yml
+  tags: dockercompose
+  when: ansible_architecture != "x86_64"
+
 - name: Configure users
   include: users.yml
   tags: users

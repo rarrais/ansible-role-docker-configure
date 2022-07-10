@@ -1,0 +1,14 @@
+---
+- name: Install dependecy for docker-compose on arm64
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - python3-pip
+    - libffi-dev # dependency for docker-compose on arm64: https://askubuntu.com/questions/1269492/ffi-h-no-such-file-or-directory-while-trying-to-install-docker-compose-on-ras
+
+- name: Installs docker-compose via pip3
+  pip:
+    name: docker-compose
+    executable: pip3
+    # extra_args: "-U" # https://pip.pypa.io/en/stable/reference/pip_install/
