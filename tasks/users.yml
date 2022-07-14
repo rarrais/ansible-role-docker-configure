@@ -23,6 +23,7 @@
     groups: "{{dockeruser.maingroup}}"
     append: yes
   when: add_default_user_to_docker_group is defined and add_default_user_to_docker_group|bool is true
+  notify: "Reboot the machine."
 
 - name: Configure .gitconfig file for default user.
   template:
