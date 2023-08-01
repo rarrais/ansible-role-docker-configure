@@ -1,6 +1,9 @@
 ---
 # defaults file for docker-configure
 
+# Reboots the machine after configuration
+docker_configure_reboot: true
+
 # Default username
 defaultuser:
   name: ubuntu

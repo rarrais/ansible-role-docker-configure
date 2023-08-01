@@ -1,3 +1,5 @@
 ---
-- name: Reboot the machine.
+- name: Reboot.
   reboot:
+  when:
+    - docker_configure_reboot

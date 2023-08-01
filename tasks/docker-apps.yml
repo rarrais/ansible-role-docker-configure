@@ -20,10 +20,3 @@
     mode: 0775
   with_items: "{{dockerconfig.folders}}"
   when: dockerconfig is defined
-
-# - name: Copy docker-compose.yml into position
-#   copy:
-#     src: "opt/docker-compose.yml"
-#     dest: "/opt/docker-compose.yml"
-#   tags:
-#     - docker-compose
