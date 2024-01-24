@@ -2,17 +2,17 @@
 # tasks file for docker-configure
 
 - name: Configure base-os
-  include: base-os.yml
+  include_tasks: base-os.yml
   tags: baseos
 
 - name: Configure users
-  include: users.yml
+  include_tasks: users.yml
   tags: users
 
 - name: Configure aliases
-  include: aliases.yml
+  include_tasks: aliases.yml
   tags: aliases
 
 - name: Configure docker apps
-  include: docker-apps.yml
+  include_tasks: docker-apps.yml
   tags: dockerapps
